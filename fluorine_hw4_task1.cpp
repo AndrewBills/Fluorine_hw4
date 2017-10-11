@@ -18,6 +18,9 @@ class HouseInfo{
 		double Price;
 	public:
 		HouseInfo() : streetNumber(0),streetName(""), Price(0.0) {}
+		
+		
+		//getters/////////////////////////
 		int getStreetNumber()
 		{
 			return streetNumber;
@@ -30,23 +33,40 @@ class HouseInfo{
 		{
 			return Price;
 		}
+		
+		
+		
+		//setters/////////////////////////
 		void setPrice(double temp)
 		{
 			Price = temp;
+	 	}
+	 	void setStreetName(string temp)
+		{
+			streetName = temp;
+	 	}
+	 	int setStreetNumber(int temp)
+		{
+			streetNumber = temp;
 		}
+	 	
+	 	
+	 	
+	 	//getting input from the user//////
 		void aquireString()
 		{
 			cin.ignore();
 	        getline(cin, streetName);
+	        cin.clear();
         }
 		void aquirehouseInfo(int i, HouseInfo h)
 		{
-        	//cout << "Enter info for " << i << " house" << endl;
-			//cout << "Please enter the street Number:" << endl;
-        	//cin >> streetNumber;
-        	//cout << "Please enter the street Name:" << endl;
-        	//aquireString();
-        	//cout << "Please enter the Price:" << endl;
+        	cout << "Enter info for " << i << " house" << endl;
+			cout << "Please enter the street Number:" << endl;
+        	cin >> streetNumber;
+        	cout << "Please enter the street Name:" << endl;
+        	aquireString();
+        	cout << "Please enter the Price:" << endl;
         	cin >> Price;
         	cout << endl << endl;
     	}
@@ -56,7 +76,7 @@ void comparePrices(HouseInfo h[2]);
 
 // Main function ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 int main() {
-	HouseInfo house_array[2]; //array of objects
+	HouseInfo house_array[3]; //array of objects
 	for(int i=0; i<3; i++)house_array[i].aquirehouseInfo(i,house_array[i]);
 	comparePrices(house_array);
 	return 0;
@@ -71,9 +91,18 @@ void comparePrices(HouseInfo h[2])
 		{
             if(h[i].getPrice()>h[j].getPrice())
 			{
-                double temp = h[i].getPrice();              
+                double temp;     
+				temp = h[i].getPrice();         
                 h[i].setPrice(h[j].getPrice());
                 h[j].setPrice(temp);
+                
+                string temp1 = h[i].getStreetName();              
+                h[i].setStreetName(h[j].getStreetName());
+                h[j].setStreetName(temp1);
+                
+                int temp2 = h[i].getStreetNumber();              
+                h[i].setStreetNumber(h[j].getStreetNumber());
+                h[j].setStreetNumber(temp2);
             }
         }
     }
